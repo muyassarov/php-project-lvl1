@@ -1,0 +1,11 @@
+{
+    "name": "behruz/php-project-lvl1",
+    "description": "My test hexlet project",
+    "authors": [
+        {
+            "name": "Behruz Muyassarov",
+            "email": "muyassarov@gmail.com"
+        }
+    ],
+    "require": {}
+}
