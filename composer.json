@@ -1,6 +1,7 @@
 {
     "name": "behruz/php-project-lvl1",
     "description": "Hexlet First Project",
+    "license": "MIT",
     "authors": [
         {
             "name": "Behruz Muyassarov",
