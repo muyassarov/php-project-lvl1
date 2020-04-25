@@ -10,7 +10,7 @@ function isEvenNumber(int $number): bool
 function createArrayWithRandomNumbers(int $length): array
 {
     $result = [];
-    if ($length < 0) {
+    if ($length <= 0) {
         return $result;
     }
     for ($i = 0; $i < $length; $i++) {

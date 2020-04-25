@@ -1,11 +1,16 @@
 #!/usr/bin/env php
 
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+$globalAutoloadPath = __DIR__ . '/../../../autoload.php';
+$localAutoloadPath = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($globalAutoloadPath)) {
+    require_once $globalAutoloadPath;
+} else {
+    require_once $localAutoloadPath;
+}
 
-use function \BrainGames\Cli\run;
 use function BrainGames\Even\askUsername;
-use function \BrainGames\Even\startGame;
+use function BrainGames\Even\startGame;
 
 echo "Welcome to the Brain Games! \n";
 $name = askUsername();
