@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function \BrainGames\Cli\run;
+use function BrainGames\Even\askUsername;
+use function \BrainGames\Even\startGame;
+
+echo "Welcome to the Brain Games! \n";
+$name = askUsername();
+$countQuestions = 3;
+startGame($countQuestions, $name);
