@@ -20,7 +20,8 @@
     "autoload": {
         "files": [
             "src/Cli.php",
-            "src/Even.php"
+            "src/Even.php",
+            "src/EvenFunctions.php"
         ]
     },
     "require-dev": {
