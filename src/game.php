@@ -15,31 +15,25 @@
  * @since      1.0.0
  */
 
-namespace BrainGames\Even;
+namespace BrainGames\Game;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\EvenFunctions\createArrayWithRandomNumbers;
-use function BrainGames\EvenFunctions\isEvenNumber;
 
 /**
  * Prompt user name and print it back to the console
  *
- * @param int $countQuestions
  * @param string $name
+ * @param string $greetingsText
+ * @param array $questions
  *
  * @return void
  */
-function startGame(int $countQuestions, string $name = 'Unknown')
+function runGame(string $name, string $greetingsText, array $questions)
 {
-    line("Answer \"yes\" if the number is even, otherwise answer \"no\".\n");
-
-    $randomNumbers = createArrayWithRandomNumbers($countQuestions);
-    foreach ($randomNumbers as $number) {
-        $isEvenNumber  = isEvenNumber($number);
-        $answer        = prompt("Question: $number");
-        $correctAnswer = $isEvenNumber ? 'yes' : 'no';
-
+    line($greetingsText);
+    foreach ($questions as $question => $correctAnswer) {
+        $answer = prompt("Question: $question");
         line("Your answer: %s", $answer);
         if ($answer !== $correctAnswer) {
             line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
@@ -50,11 +44,4 @@ function startGame(int $countQuestions, string $name = 'Unknown')
     }
 
     line("Congratulations, %s!", $name);
-}
-
-function askUsername(): string
-{
-    $name = prompt('May I have your name?');
-    line("Hello, %s!\n", $name);
-    return $name;
 }
