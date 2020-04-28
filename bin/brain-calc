@@ -2,7 +2,6 @@
 
 <?php
 
-use function BrainGames\Functions\askUsername;
 use function BrainGames\Games\Calc\calcGame;
 
 $globalAutoloadPath = __DIR__ . '/../../../autoload.php';
@@ -16,4 +15,4 @@ if (file_exists($globalAutoloadPath)) {
 echo "Welcome to the Brain Games! \n";
 $countQuestions = 3;
 
-calcGame(askUsername(), $countQuestions);
+calcGame($countQuestions);

@@ -17,21 +17,22 @@
 
 namespace BrainGames\Game;
 
+use function BrainGames\Functions\askUsername;
 use function cli\line;
 use function cli\prompt;
 
 /**
  * Prompt user name and print it back to the console
  *
- * @param string $name
  * @param string $greetingsText
  * @param array $questions
  *
  * @return void
  */
-function runGame(string $name, string $greetingsText, array $questions)
+function runGame(string $greetingsText, array $questions)
 {
     line($greetingsText);
+    $name = askUsername();
     foreach ($questions as $question => $correctAnswer) {
         $answer = prompt("Question: $question");
         line("Your answer: %s", $answer);

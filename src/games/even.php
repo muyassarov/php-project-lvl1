@@ -17,6 +17,7 @@
 
 namespace BrainGames\Games\Even;
 
+use function BrainGames\Functions\isEvenNumber;
 use function BrainGames\Game\runGame;
 use function BrainGames\Functions\getRandomNumber;
 
@@ -25,14 +26,13 @@ const GREETINGS = "Answer \"yes\" if the number is even, otherwise answer \"no\"
 /**
  * Run brain even game
  *
- * @param string $name
  * @param int $countQuestions
  *
  * @return void
  */
-function evenGame(string $name, int $countQuestions)
+function evenGame(int $countQuestions)
 {
-    runGame($name, GREETINGS, createArrayQuestions($countQuestions));
+    runGame(GREETINGS, createArrayQuestions($countQuestions));
 }
 
 function createArrayQuestions($countQuestions)
@@ -43,11 +43,6 @@ function createArrayQuestions($countQuestions)
         $result[$item] = isEvenNumber($item) ? 'yes' : 'no';
     }
     return $result;
-}
-
-function isEvenNumber(int $number): bool
-{
-    return $number % 2 === 0;
 }
 
 function createArrayWithRandomNumbers(int $length): array

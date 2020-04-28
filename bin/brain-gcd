@@ -1,16 +1,18 @@
 #!/usr/bin/env php
 
 <?php
+
+use function BrainGames\Games\Gcd\gcdGame;
+
 $globalAutoloadPath = __DIR__ . '/../../../autoload.php';
-$localAutoloadPath = __DIR__ . '/../vendor/autoload.php';
+$localAutoloadPath  = __DIR__ . '/../vendor/autoload.php';
 if (file_exists($globalAutoloadPath)) {
     require_once $globalAutoloadPath;
 } else {
     require_once $localAutoloadPath;
 }
 
-use function BrainGames\Games\Even\evenGame;
-
 echo "Welcome to the Brain Games! \n";
 $countQuestions = 3;
-evenGame($countQuestions);
+
+gcdGame($countQuestions);

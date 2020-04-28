@@ -17,7 +17,7 @@ function getRandomNumber($min = 10, $max = 100)
     return rand($min, $max);
 }
 
-function getRandomOperation()
+function getRandomOperation() : string
 {
     $operations = ['*', '+', '-'];
     return $operations[rand(0, count($operations) - 1)];
@@ -36,4 +36,10 @@ function calculateMathOperation($var1, $var2, $operation): int
             return $var1 * $var2;
             break;
     }
+    return null;
+}
+
+function isEvenNumber(int $number): bool
+{
+    return $number % 2 === 0;
 }

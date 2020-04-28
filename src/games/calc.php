@@ -9,9 +9,9 @@ use function BrainGames\Functions\getRandomNumber;
 
 const GREETINGS = 'What is the result of the expression?';
 
-function calcGame($name, $numberOfQuestions)
+function calcGame($numberOfQuestions)
 {
-    runGame($name, GREETINGS, createArrayQuestions($numberOfQuestions));
+    runGame(GREETINGS, createArrayQuestions($numberOfQuestions));
 }
 
 function createArrayQuestions($numberOfQuestions)
