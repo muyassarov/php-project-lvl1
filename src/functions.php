@@ -17,7 +17,7 @@ function getRandomNumber($min = 10, $max = 100)
     return rand($min, $max);
 }
 
-function getRandomOperation() : string
+function getRandomOperation(): string
 {
     $operations = ['*', '+', '-'];
     return $operations[rand(0, count($operations) - 1)];
