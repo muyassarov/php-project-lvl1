@@ -14,6 +14,6 @@ if (file_exists($globalAutoloadPath)) {
 }
 
 echo "Welcome to the Brain Games! \n";
-$countQuestions = 4;
+$countQuestions = 3;
 
 calcGame(askUsername(), $countQuestions);
