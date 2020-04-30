@@ -5,7 +5,7 @@ namespace BrainGames\Games\Gcd;
 use function BrainGames\Functions\getRandomNumber;
 use function BrainGames\Game\runGame;
 
-const GREETINGS = "Find the greatest common divisor of given numbers.";
+const GREETINGS = "Find the greatest common divisor of given numbers.\n";
 
 function gcdGame(int $numberOfQuestions)
 {

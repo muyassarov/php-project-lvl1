@@ -43,3 +43,14 @@ function isEvenNumber(int $number): bool
 {
     return $number % 2 === 0;
 }
+
+function createProgression(callable $func, int $countElements = 10): array
+{
+    $result  = [];
+    $element = getRandomNumber(1, 10);
+    for ($i = 0; $i < $countElements; $i++) {
+        $result[] = $element;
+        $element  = $func($element);
+    }
+    return $result;
+}

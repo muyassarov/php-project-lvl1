@@ -7,7 +7,7 @@ use function BrainGames\Functions\getRandomOperation;
 use function BrainGames\Game\runGame;
 use function BrainGames\Functions\getRandomNumber;
 
-const GREETINGS = 'What is the result of the expression?';
+const GREETINGS = "What is the result of the expression?\n";
 
 function calcGame($numberOfQuestions)
 {

@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+
+<?php
+
+use function BrainGames\Games\Progression\progressionGame;
+
+$globalAutoloadPath = __DIR__ . '/../../../autoload.php';
+$localAutoloadPath  = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($globalAutoloadPath)) {
+    require_once $globalAutoloadPath;
+} else {
+    require_once $localAutoloadPath;
+}
+
+echo "Welcome to the Brain Games! \n";
+$countQuestions = 3;
+
+progressionGame($countQuestions);
