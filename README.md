@@ -8,3 +8,5 @@
 [Brain Calc game](https://terminalizer.com/view/a2ba4dd83898)
 
 [Brain Gcd game](https://terminalizer.com/view/380d03423899)
+
+[Brain Progression game](https://terminalizer.com/view/5c65eff73903)
