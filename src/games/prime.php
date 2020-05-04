@@ -7,10 +7,11 @@ use function BrainGames\Functions\isPrime;
 use function BrainGames\Game\runGame;
 
 const GREETINGS = "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n";
+const NUMBER_QUESTIONS = 3;
 
-function primeGame(int $countQuestions)
+function primeGame()
 {
-    runGame(GREETINGS, createArrayQuestions($countQuestions));
+    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
 }
 
 function createArrayQuestions($countQuestions)

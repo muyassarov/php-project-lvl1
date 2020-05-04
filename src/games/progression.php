@@ -6,10 +6,11 @@ use function BrainGames\Functions\createProgression;
 use function BrainGames\Game\runGame;
 
 const GREETINGS = "What number is missing in the progression?\n";
+const NUMBER_QUESTIONS = 3;
 
-function progressionGame(int $countQuestions)
+function progressionGame()
 {
-    runGame(GREETINGS, createArrayQuestions($countQuestions));
+    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
 }
 
 function createArrayQuestions($countQuestions)

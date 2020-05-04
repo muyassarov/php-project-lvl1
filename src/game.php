@@ -31,6 +31,7 @@ use function cli\prompt;
  */
 function runGame(string $greetingsText, array $questions)
 {
+    line("Welcome to the Brain Games!");
     line($greetingsText);
     $name = askUsername();
     foreach ($questions as $question => $correctAnswer) {

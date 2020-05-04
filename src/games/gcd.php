@@ -6,10 +6,11 @@ use function BrainGames\Functions\getRandomNumber;
 use function BrainGames\Game\runGame;
 
 const GREETINGS = "Find the greatest common divisor of given numbers.\n";
+const NUMBER_QUESTIONS = 3;
 
-function gcdGame(int $numberOfQuestions)
+function gcdGame()
 {
-    runGame(GREETINGS, createArrayQuestions($numberOfQuestions));
+    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
 }
 
 function createArrayQuestions($numberOfQuestions)

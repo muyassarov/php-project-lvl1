@@ -12,7 +12,4 @@ if (file_exists($globalAutoloadPath)) {
     require_once $localAutoloadPath;
 }
 
-echo "Welcome to the Brain Games! \n";
-$countQuestions = 3;
-
-calcGame($countQuestions);
+calcGame();

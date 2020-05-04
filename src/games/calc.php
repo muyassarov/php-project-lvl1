@@ -8,16 +8,17 @@ use function BrainGames\Game\runGame;
 use function BrainGames\Functions\getRandomNumber;
 
 const GREETINGS = "What is the result of the expression?\n";
+const NUMBER_QUESTIONS = 3;
 
-function calcGame($numberOfQuestions)
+function calcGame()
 {
-    runGame(GREETINGS, createArrayQuestions($numberOfQuestions));
+    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
 }
 
-function createArrayQuestions($numberOfQuestions)
+function createArrayQuestions($numberQuestions)
 {
     $result = [];
-    for ($i = 0; $i < $numberOfQuestions; $i++) {
+    for ($i = 0; $i < $numberQuestions; $i++) {
         $question = getQuestion();
         $result[$question['index']] = $question['result'];
     }

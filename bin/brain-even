@@ -11,6 +11,4 @@ if (file_exists($globalAutoloadPath)) {
 
 use function BrainGames\Games\Even\evenGame;
 
-echo "Welcome to the Brain Games! \n";
-$countQuestions = 3;
-evenGame($countQuestions);
+evenGame();

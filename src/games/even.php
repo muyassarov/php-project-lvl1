@@ -22,17 +22,16 @@ use function BrainGames\Game\runGame;
 use function BrainGames\Functions\getRandomNumber;
 
 const GREETINGS = "Answer \"yes\" if the number is even, otherwise answer \"no\".\n";
+const NUMBER_QUESTIONS = 3;
 
 /**
  * Run brain even game
  *
- * @param int $countQuestions
- *
  * @return void
  */
-function evenGame(int $countQuestions)
+function evenGame()
 {
-    runGame(GREETINGS, createArrayQuestions($countQuestions));
+    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
 }
 
 function createArrayQuestions($countQuestions)

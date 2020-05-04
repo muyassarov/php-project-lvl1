@@ -9,7 +9,7 @@
         }
     ],
     "scripts": {
-        "phpcs": "./vendor/bin/phpcs ./src"
+        "phpcs": "phpcs ./src"
     },
     "bin": [
         "bin/brain-even",
