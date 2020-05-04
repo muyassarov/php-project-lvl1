@@ -17,42 +17,38 @@
 
 namespace BrainGames\Games\Even;
 
-use function BrainGames\Functions\isEvenNumber;
 use function BrainGames\Game\runGame;
-use function BrainGames\Functions\getRandomNumber;
 
-const GREETINGS = "Answer \"yes\" if the number is even, otherwise answer \"no\".\n";
-const NUMBER_QUESTIONS = 3;
+use const BrainGames\Game\NUMBER_ROUNDS;
+
+const DESCRIPTION = "Answer \"yes\" if the number is even, otherwise answer \"no\".\n";
 
 /**
  * Run brain even game
  *
  * @return void
  */
-function evenGame()
+function runEvenGame()
 {
-    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
+    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
 }
 
 function createArrayQuestions($countQuestions)
 {
-    $array  = createArrayWithRandomNumbers($countQuestions);
-    $result = [];
-    foreach ($array as $item) {
-        $result[$item] = isEvenNumber($item) ? 'yes' : 'no';
+    $questions = [];
+    if ($countQuestions <= 0) {
+        return $questions;
     }
-    return $result;
+    for ($i = 0; $i < $countQuestions; $i++) {
+        $question             = rand(1, 100);
+        $answer               = isEvenNumber($question) ? 'yes' : 'no';
+        $questions[$question] = $answer;
+    }
+
+    return $questions;
 }
 
-function createArrayWithRandomNumbers(int $length): array
+function isEvenNumber(int $number): bool
 {
-    $result = [];
-    if ($length <= 0) {
-        return $result;
-    }
-    for ($i = 0; $i < $length; $i++) {
-        $result[] = getRandomNumber();
-    }
-
-    return $result;
+    return $number % 2 === 0;
 }

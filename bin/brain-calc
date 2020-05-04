@@ -2,7 +2,7 @@
 
 <?php
 
-use function BrainGames\Games\Calc\calcGame;
+use function BrainGames\Games\Calc\runCalcGame;
 
 $globalAutoloadPath = __DIR__ . '/../../../autoload.php';
 $localAutoloadPath  = __DIR__ . '/../vendor/autoload.php';
@@ -12,4 +12,4 @@ if (file_exists($globalAutoloadPath)) {
     require_once $localAutoloadPath;
 }
 
-calcGame();
+runCalcGame();

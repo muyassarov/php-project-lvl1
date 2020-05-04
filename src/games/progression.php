@@ -2,20 +2,20 @@
 
 namespace BrainGames\Games\Progression;
 
-use function BrainGames\Functions\createProgression;
 use function BrainGames\Game\runGame;
 
-const GREETINGS = "What number is missing in the progression?\n";
-const NUMBER_QUESTIONS = 3;
+use const BrainGames\Game\NUMBER_ROUNDS;
 
-function progressionGame()
+const DESCRIPTION = "What number is missing in the progression?\n";
+
+function runProgressionGame()
 {
-    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
+    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
 }
 
 function createArrayQuestions($countQuestions)
 {
-    $stepFunctions    = [
+    $stepFunctions = [
         function ($item) {
             return $item * 2;
         },
@@ -29,32 +29,33 @@ function createArrayQuestions($countQuestions)
             return $item + 3;
         },
     ];
-    $maxIndex         = count($stepFunctions) - 1;
-    $progressionArray = [];
-    $result           = [];
+    $maxIndex      = count($stepFunctions) - 1;
+    $progressions  = [];
+    $questions     = [];
     for ($i = 0; $i < $countQuestions; $i++) {
-        $stepFunction       = $stepFunctions[rand(0, $maxIndex)];
-        $progressionArray[] = createProgression($stepFunction);
+        $stepFunction   = $stepFunctions[rand(0, $maxIndex)];
+        $progressions[] = createProgression($stepFunction);
     }
 
-    foreach ($progressionArray as $item) {
-        $result = array_merge($result, createQuestion($item));
+    foreach ($progressions as $progression) {
+        $answer_index               = array_rand($progression);
+        $answer                     = $progression[$answer_index];
+        $progression[$answer_index] = '..';
+        $question                   = implode(' ', $progression);
+
+        $questions[$question] = (string)$answer;
     }
 
-    return $result;
+    return $questions;
 }
 
-function createQuestion(array $progression): array
+function createProgression(callable $func, int $countElements = 10): array
 {
-    $countElements = count($progression);
-    $fromRand      = $countElements >= 10 ? 2 : 0;
-    $toRand        = $countElements >= 10 ? $countElements - 2 : $countElements;
-    $index         = rand($fromRand, $toRand);
-    $answer        = $progression[$index];
-
-    $progression[$index] = '..';
-
-    return [
-        implode(' ', $progression) => (string)$answer,
-    ];
+    $progression = [];
+    $item        = rand(1, 10);
+    for ($i = 0; $i < $countElements; $i++) {
+        $progression[] = $item;
+        $item          = $func($item);
+    }
+    return $progression;
 }

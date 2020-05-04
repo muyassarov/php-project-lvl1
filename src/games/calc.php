@@ -2,36 +2,44 @@
 
 namespace BrainGames\Games\Calc;
 
-use function BrainGames\Functions\calculateMathOperation;
-use function BrainGames\Functions\getRandomOperation;
 use function BrainGames\Game\runGame;
-use function BrainGames\Functions\getRandomNumber;
 
-const GREETINGS = "What is the result of the expression?\n";
-const NUMBER_QUESTIONS = 3;
+use const BrainGames\Game\NUMBER_ROUNDS;
 
-function calcGame()
+const DESCRIPTION  = "What is the result of the expression?\n";
+
+function runCalcGame()
 {
-    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
+    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
 }
 
 function createArrayQuestions($numberQuestions)
 {
-    $result = [];
+    $questions = [];
+    $operators = ['*', '+', '-'];
     for ($i = 0; $i < $numberQuestions; $i++) {
-        $question = getQuestion();
-        $result[$question['index']] = $question['result'];
+        $operand1 = rand(1, 10);
+        $operand2 = rand(1, 15);
+        $operator = $operators[array_rand($operators)];
+        $question = "{$operand1} {$operator} {$operand2}";
+        $answer   = (string)calculateMathExpression($operand1, $operand2, $operator);
+
+        $questions[$question] = $answer;
     }
-    return $result;
+    return $questions;
 }
 
-function getQuestion(): array
+function calculateMathExpression($operand1, $operand2, $operator): int
 {
-    $variable1 = getRandomNumber(1, 10);
-    $variable2 = getRandomNumber(1, 15);
-    $operation = getRandomOperation();
-    return [
-        'index' => "{$variable1} {$operation} {$variable2}",
-        'result' => (string)calculateMathOperation($variable1, $variable2, $operation)
-    ];
+    switch ($operator) {
+        case '+':
+            return $operand1 + $operand2;
+        case '-':
+            return $operand1 - $operand2;
+        case '*':
+            return $operand1 * $operand2;
+        default:
+            throw new \Exception("Unknown operator: {$operator}");
+            break;
+    }
 }

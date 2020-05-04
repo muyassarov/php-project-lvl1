@@ -2,25 +2,45 @@
 
 namespace BrainGames\Games\Prime;
 
-use function BrainGames\Functions\getRandomNumber;
-use function BrainGames\Functions\isPrime;
 use function BrainGames\Game\runGame;
 
-const GREETINGS = "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n";
-const NUMBER_QUESTIONS = 3;
+use const BrainGames\Game\NUMBER_ROUNDS;
 
-function primeGame()
+const DESCRIPTION = "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n";
+
+function runPrimeGame()
 {
-    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
+    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
 }
 
 function createArrayQuestions($countQuestions)
 {
     $result = [];
     for ($i = 0; $i < $countQuestions; $i++) {
-        $number          = getRandomNumber(2, 100);
-        $result[$number] = isPrime($number) ? 'yes' : 'no';
+        $question          = rand(2, 100);
+        $answer            = isPrime($question) ? 'yes' : 'no';
+        $result[$question] = $answer;
     }
 
     return $result;
+}
+
+function isPrime(int $number): bool
+{
+    if ($number < 2) {
+        return false;
+    }
+
+    // default denom "1"
+    $countDemons = 1;
+    for ($i = 2; $i <= floor($number / 2); $i++) {
+        if ($number % $i === 0) {
+            $countDemons++;
+        }
+        if ($countDemons > 1) {
+            return false;
+        }
+    }
+
+    return  true;
 }

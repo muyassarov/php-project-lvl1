@@ -17,9 +17,10 @@
 
 namespace BrainGames\Game;
 
-use function BrainGames\Functions\askUsername;
 use function cli\line;
 use function cli\prompt;
+
+const NUMBER_ROUNDS = 3;
 
 /**
  * Prompt user name and print it back to the console
@@ -33,7 +34,10 @@ function runGame(string $greetingsText, array $questions)
 {
     line("Welcome to the Brain Games!");
     line($greetingsText);
-    $name = askUsername();
+
+    $name = prompt('May I have your name?');
+    line("Hello, %s!\n", $name);
+
     foreach ($questions as $question => $correctAnswer) {
         $answer = prompt("Question: $question");
         line("Your answer: %s", $answer);

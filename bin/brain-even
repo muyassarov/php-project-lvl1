@@ -9,6 +9,6 @@ if (file_exists($globalAutoloadPath)) {
     require_once $localAutoloadPath;
 }
 
-use function BrainGames\Games\Even\evenGame;
+use function BrainGames\Games\Even\runEvenGame;
 
-evenGame();
+runEvenGame();

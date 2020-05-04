@@ -25,7 +25,6 @@
         "files": [
             "src/Cli.php",
             "src/game.php",
-            "src/functions.php",
             "src/games/even.php",
             "src/games/calc.php",
             "src/games/gcd.php",

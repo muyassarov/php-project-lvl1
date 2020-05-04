@@ -2,39 +2,32 @@
 
 namespace BrainGames\Games\Gcd;
 
-use function BrainGames\Functions\getRandomNumber;
 use function BrainGames\Game\runGame;
 
-const GREETINGS = "Find the greatest common divisor of given numbers.\n";
-const NUMBER_QUESTIONS = 3;
+use const BrainGames\Game\NUMBER_ROUNDS;
 
-function gcdGame()
+const DESCRIPTION = "Find the greatest common divisor of given numbers.\n";
+
+function runGcdGame()
 {
-    runGame(GREETINGS, createArrayQuestions(NUMBER_QUESTIONS));
+    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
 }
 
 function createArrayQuestions($numberOfQuestions)
 {
-    $result = [];
+    $questions = [];
     if (!$numberOfQuestions) {
-        return $result;
+        return $questions;
     }
 
     for ($i = 0; $i < $numberOfQuestions; $i++) {
-        $result = array_merge($result, getQuestion());
+        $operand1 = (string)rand(10, 100);
+        $operand2 = (string)rand(20, 100);
+
+        $question = "{$operand1} {$operand2}";
+        $answer   = (string)gmp_gcd($operand1, $operand2);
+        $questions[$question] = $answer;
     }
 
-    return $result;
-}
-
-function getQuestion()
-{
-    $var1 = (string)getRandomNumber(10, 100);
-    $var2 = (string)getRandomNumber(20, 100);
-
-    $question = "{$var1} {$var2}";
-
-    return [
-        $question => (string)gmp_gcd($var1, $var2)
-    ];
+    return $questions;
 }
