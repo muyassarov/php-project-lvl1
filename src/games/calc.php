@@ -2,31 +2,35 @@
 
 namespace BrainGames\Games\Calc;
 
-use function BrainGames\Game\runGame;
+use function BrainGames\Engine\runGame;
 
-use const BrainGames\Game\NUMBER_ROUNDS;
+use const BrainGames\Engine\NUMBER_OF_ROUNDS;
 
-const DESCRIPTION  = "What is the result of the expression?\n";
+const DESCRIPTION = "What is the result of the expression?";
+const OPERATORS   = [
+    '*',
+    '+',
+    '-',
+];
 
 function runCalcGame()
 {
-    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
-}
+    $gameRounds = [];
 
-function createArrayQuestions($numberQuestions)
-{
-    $questions = [];
-    $operators = ['*', '+', '-'];
-    for ($i = 0; $i < $numberQuestions; $i++) {
+    for ($i = 0; $i < NUMBER_OF_ROUNDS; $i++) {
         $operand1 = rand(1, 10);
         $operand2 = rand(1, 15);
-        $operator = $operators[array_rand($operators)];
+        $operator = OPERATORS[array_rand(OPERATORS)];
         $question = "{$operand1} {$operator} {$operand2}";
         $answer   = (string)calculateMathExpression($operand1, $operand2, $operator);
 
-        $questions[$question] = $answer;
+        $gameRounds[] = [
+            'question' => $question,
+            'answer'   => $answer,
+        ];
     }
-    return $questions;
+
+    runGame(DESCRIPTION, $gameRounds);
 }
 
 function calculateMathExpression($operand1, $operand2, $operator): int
@@ -40,6 +44,5 @@ function calculateMathExpression($operand1, $operand2, $operator): int
             return $operand1 * $operand2;
         default:
             throw new \Exception("Unknown operator: {$operator}");
-            break;
     }
 }

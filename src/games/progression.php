@@ -2,60 +2,44 @@
 
 namespace BrainGames\Games\Progression;
 
-use function BrainGames\Game\runGame;
+use function BrainGames\Engine\runGame;
 
-use const BrainGames\Game\NUMBER_ROUNDS;
+use const BrainGames\Engine\NUMBER_OF_ROUNDS;
 
-const DESCRIPTION = "What number is missing in the progression?\n";
+const DESCRIPTION         = "What number is missing in the progression?";
+const ELEMENT_REPLACEMENT = '..';
 
 function runProgressionGame()
 {
-    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
-}
-
-function createArrayQuestions($countQuestions)
-{
-    $stepFunctions = [
-        function ($item) {
-            return $item * 2;
-        },
-        function ($item) {
-            return $item + 2;
-        },
-        function ($item) {
-            return $item + 1;
-        },
-        function ($item) {
-            return $item + 3;
-        },
-    ];
-    $maxIndex      = count($stepFunctions) - 1;
-    $progressions  = [];
-    $questions     = [];
-    for ($i = 0; $i < $countQuestions; $i++) {
-        $stepFunction   = $stepFunctions[rand(0, $maxIndex)];
-        $progressions[] = createProgression($stepFunction);
+    $gameRounds   = [];
+    $progressions = [];
+    for ($i = 0; $i < NUMBER_OF_ROUNDS; $i++) {
+        $progressions[] = createProgression();
     }
 
     foreach ($progressions as $progression) {
-        $answer_index               = array_rand($progression);
-        $answer                     = $progression[$answer_index];
-        $progression[$answer_index] = '..';
-        $question                   = implode(' ', $progression);
+        $answerIndex               = array_rand($progression);
+        $answer                    = $progression[$answerIndex];
+        $progression[$answerIndex] = ELEMENT_REPLACEMENT;
+        $question                  = implode(' ', $progression);
 
-        $questions[$question] = (string)$answer;
+        $gameRounds[] = [
+            'question' => $question,
+            'answer'   => (string)$answer,
+        ];
     }
 
-    return $questions;
+    runGame(DESCRIPTION, $gameRounds);
 }
 
-function createProgression(callable $func, int $countElements = 10): array
+function createProgression(int $countElements = 10): array
 {
     $progression = [];
     $item        = rand(1, 10);
+    $delta       = rand(1, 5);
     for ($i = 0; $i < $countElements; $i++) {
         $progression[] = $item;
-        $item          = $func($item);
+        $item          = $item + $delta;
     }
     return $progression;
 }

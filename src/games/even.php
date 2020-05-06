@@ -17,35 +17,30 @@
 
 namespace BrainGames\Games\Even;
 
-use function BrainGames\Game\runGame;
+use function BrainGames\Engine\runGame;
 
-use const BrainGames\Game\NUMBER_ROUNDS;
+use const BrainGames\Engine\NUMBER_OF_ROUNDS;
 
-const DESCRIPTION = "Answer \"yes\" if the number is even, otherwise answer \"no\".\n";
+const DESCRIPTION = "Answer \"yes\" if the number is even, otherwise answer \"no\".";
 
 /**
- * Run brain even game
+ * Run brain-even game
  *
  * @return void
  */
 function runEvenGame()
 {
-    runGame(DESCRIPTION, createArrayQuestions(NUMBER_ROUNDS));
-}
-
-function createArrayQuestions($countQuestions)
-{
-    $questions = [];
-    if ($countQuestions <= 0) {
-        return $questions;
-    }
-    for ($i = 0; $i < $countQuestions; $i++) {
-        $question             = rand(1, 100);
-        $answer               = isEvenNumber($question) ? 'yes' : 'no';
-        $questions[$question] = $answer;
+    $gameRounds = [];
+    for ($i = 0; $i < NUMBER_OF_ROUNDS; $i++) {
+        $question     = rand(1, 100);
+        $answer       = isEvenNumber($question) ? 'yes' : 'no';
+        $gameRounds[] = [
+            'question' => $question,
+            'answer'   => $answer,
+        ];
     }
 
-    return $questions;
+    runGame(DESCRIPTION, $gameRounds);
 }
 
 function isEvenNumber(int $number): bool
