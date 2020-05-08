@@ -6,7 +6,7 @@ use function BrainGames\Engine\runGame;
 
 use const BrainGames\Engine\NUMBER_OF_ROUNDS;
 
-const DESCRIPTION = "What is the result of the expression?";
+const DESCRIPTION = 'What is the result of the expression?';
 const OPERATORS   = [
     '*',
     '+',
@@ -25,8 +25,8 @@ function runCalcGame()
         $answer   = (string)calculateMathExpression($operand1, $operand2, $operator);
 
         $gameRounds[] = [
-            'question' => $question,
-            'answer'   => $answer,
+            $question,
+            $answer,
         ];
     }
 

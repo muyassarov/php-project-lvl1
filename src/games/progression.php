@@ -6,40 +6,25 @@ use function BrainGames\Engine\runGame;
 
 use const BrainGames\Engine\NUMBER_OF_ROUNDS;
 
-const DESCRIPTION         = "What number is missing in the progression?";
-const ELEMENT_REPLACEMENT = '..';
+const DESCRIPTION = 'What number is missing in the progression?';
 
 function runProgressionGame()
 {
-    $gameRounds   = [];
-    $progressions = [];
+    $gameRounds = [];
+    $elementReplacement = '..';
     for ($i = 0; $i < NUMBER_OF_ROUNDS; $i++) {
-        $progressions[] = createProgression();
-    }
-
-    foreach ($progressions as $progression) {
+        $delta                     = rand(1, 5);
+        $progression               = range(1, $delta * 10, $delta);
         $answerIndex               = array_rand($progression);
         $answer                    = $progression[$answerIndex];
-        $progression[$answerIndex] = ELEMENT_REPLACEMENT;
+        $progression[$answerIndex] = $elementReplacement;
         $question                  = implode(' ', $progression);
 
         $gameRounds[] = [
-            'question' => $question,
-            'answer'   => (string)$answer,
+            $question,
+            (string)$answer,
         ];
     }
 
     runGame(DESCRIPTION, $gameRounds);
-}
-
-function createProgression(int $countElements = 10): array
-{
-    $progression = [];
-    $item        = rand(1, 10);
-    $delta       = rand(1, 5);
-    for ($i = 0; $i < $countElements; $i++) {
-        $progression[] = $item;
-        $item          = $item + $delta;
-    }
-    return $progression;
 }

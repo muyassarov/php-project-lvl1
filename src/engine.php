@@ -25,22 +25,20 @@ const NUMBER_OF_ROUNDS = 3;
 /**
  * Game engine
  *
- * @param string $description
- * @param array $questionsAnswers
+ * @param string $gameDescription
+ * @param array $gameRounds
  *
  * @return void
  */
-function runGame(string $description, array $questionsAnswers)
+function runGame(string $gameDescription, array $gameRounds)
 {
     line("Welcome to the Brain Games!");
-    line("$description\n");
+    line("$gameDescription\n");
 
     $name = prompt('May I have your name?');
     line("Hello, $name!\n");
 
-    foreach ($questionsAnswers as $round) {
-        ['question' => $question, 'answer' => $correctAnswer] = $round;
-
+    foreach ($gameRounds as [$question, $correctAnswer]) {
         line("Question: $question");
         $answer = prompt('Your answer');
         if ($answer !== $correctAnswer) {

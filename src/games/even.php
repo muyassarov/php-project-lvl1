@@ -21,7 +21,7 @@ use function BrainGames\Engine\runGame;
 
 use const BrainGames\Engine\NUMBER_OF_ROUNDS;
 
-const DESCRIPTION = "Answer \"yes\" if the number is even, otherwise answer \"no\".";
+const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 /**
  * Run brain-even game
@@ -35,8 +35,8 @@ function runEvenGame()
         $question     = rand(1, 100);
         $answer       = isEvenNumber($question) ? 'yes' : 'no';
         $gameRounds[] = [
-            'question' => $question,
-            'answer'   => $answer,
+            $question,
+            $answer,
         ];
     }
 

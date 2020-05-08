@@ -8,9 +8,6 @@
             "email": "muyassarov@gmail.com"
         }
     ],
-    "scripts": {
-        "phpcs": "phpcs ./src"
-    },
     "bin": [
         "bin/brain-even",
         "bin/brain-calc",
