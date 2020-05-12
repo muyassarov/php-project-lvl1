@@ -33,7 +33,7 @@ function runEvenGame()
     $gameRounds = [];
     for ($i = 0; $i < NUMBER_OF_ROUNDS; $i++) {
         $question     = rand(1, 100);
-        $answer       = isEvenNumber($question) ? 'yes' : 'no';
+        $answer       = isEven($question) ? 'yes' : 'no';
         $gameRounds[] = [
             $question,
             $answer,
@@ -43,7 +43,7 @@ function runEvenGame()
     runGame(DESCRIPTION, $gameRounds);
 }
 
-function isEvenNumber(int $number): bool
+function isEven(int $number): bool
 {
     return $number % 2 === 0;
 }

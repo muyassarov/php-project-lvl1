@@ -17,7 +17,7 @@ function runGcdGame()
         $operand2 = (string)rand(20, 100);
 
         $question     = "{$operand1} {$operand2}";
-        $answer       = (string)gmp_gcd($operand1, $operand2);
+        $answer       = (string)gcd($operand1, $operand2);
         $gameRounds[] = [
             $question,
             $answer,
@@ -25,4 +25,17 @@ function runGcdGame()
     }
 
     runGame(DESCRIPTION, $gameRounds);
+}
+
+function gcd(int $number1, int $number2): int
+{
+    if ($number1 == $number2) {
+        return $number1;
+    }
+    if ($number1 > $number2) {
+        $tmp = $number1;
+        $number1 = $number2;
+        $number2 = $tmp;
+    }
+    return gcd($number1, $number2 - $number1);
 }

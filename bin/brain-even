@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 
 <?php
+
+use function BrainGames\Games\Even\runEvenGame;
+
 $globalAutoloadPath = __DIR__ . '/../../../autoload.php';
 $localAutoloadPath = __DIR__ . '/../vendor/autoload.php';
 if (file_exists($globalAutoloadPath)) {
@@ -8,7 +11,5 @@ if (file_exists($globalAutoloadPath)) {
 } else {
     require_once $localAutoloadPath;
 }
-
-use function BrainGames\Games\Even\runEvenGame;
 
 runEvenGame();
